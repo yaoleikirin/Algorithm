@@ -3,13 +3,13 @@
 python -m pip install -i https://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com numpy
 '''
 #抓取网易的股票信息，股票名字、代码、所属行业
-import re,urllib3
-from bs4 import BeautifulSoup,SoupStrainer
-import html5lib
-import requests
-import json
-import sys
-import os
+import urllib3
+from bs4 import BeautifulSoup
+# import html5lib
+# import requests
+# import json
+# import sys
+# import os
 import time
 import numpy as np
 import pandas as pd
@@ -158,9 +158,16 @@ class getstock:
                 rsi.append(100*sumn_rise/(sumn_rise-sumn_down))
         rtn=[rsi[::-1],date[::-1]]             
         return rtn 
+    def broadcast(self,str1):
+        import pyttsx3
+        pyttsx3.speak(str1)
         
 
-# gs=getstock(2108)
+gs=getstock(600691)
+while(1):
+    time.sleep(30)
+    gs.__init__(600691)
+    gs.broadcast(gs.price)
 # print(gs.name,"开盘价:",gs.open)
 # print(gs._season('2021','1'))
 # print(gs.dayN(7))
