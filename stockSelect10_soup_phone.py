@@ -159,15 +159,16 @@ class getstock:
         rtn=[rsi[::-1],date[::-1]]             
         return rtn 
     def broadcast(self,str1):
-        import pyttsx3
-        pyttsx3.speak(str1)
+        # import pyttsx3
+        # pyttsx3.speak(str1)
+        from gtts import gTTS 
+        tts = gTTS(str1) 
+        # tts.save('hello.mp3')
         
-
-gs=getstock(600691)
-while(1):
-    time.sleep(30)
-    gs.__init__(600691)
+while("09:30:00"<time.strftime("%H:%M:%S", time.localtime())<"11:30:00" or "13:00:00"<time.strftime("%H:%M:%S", time.localtime())<"15:00:00"):  
+    gs=getstock(600691)
     gs.broadcast(gs.price)
+    time.sleep(30)
 # print(gs.name,"开盘价:",gs.open)
 # print(gs._season('2021','1'))
 # print(gs.dayN(7))
